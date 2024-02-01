@@ -12,10 +12,23 @@
     <!-- <title>{{ config('app.name', 'laravel') }}</title> -->
     <title>Inventory System</title>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </head>
-<body id="page-top">
 
+
+
+<body id="page-top">
+    <center>
+      
+            <div class="quotebackground">
+              <h2 class="display-2 text-center mb-2" id='quotes'>Loading Quote...</h2>
+              <p id="author" class="display-5" style="font-style: italic">Loading Author...</p>
+            </div>
+       
+     
+        </center>
+    
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -41,16 +54,49 @@
                 <center>
 
                     {{-- <h1 class="first_h1">" Hi, Welcome Please Log-in! "</h1><br> --}}
-                    <h1 class="first_h1">
-                        "Effortless Control, Seamless Success:<br> Your Inventory, Our Expertise!" 
-                    </h1><br>
+                   
                     <form action="{{ route('login') }}" method="get">
-                        
                     <input type="submit" name="submit" class="btn_login" value="Click Here to Log-In">
                     </form>
-                           
-            
+                  
+                    <h1 class="inventorytitle">INVENTORY</h1>
                 </center>
+        
+        <script>
+      
+
+        const apiEndpoint = 'https://animechan.xyz/api/random';
+
+        window.addEventListener('load', axiosGet);
+
+        function axiosGet() {
+          axios.get(apiEndpoint).then(response => {
+            output(response);
+            // showOutput(response);
+            return response;
+          }).catch(error => {
+            const response = {
+              data: {
+                quote: 'Uhh uhh uhh',
+                character: 'Dev0x13',
+              }
+            };
+            output(response);
+            console.error(error);
+          });
+        }
+
+
+        function output(response) {
+          const container = document.querySelector('#quotes');
+          console.log(response.data);
+          container.innerText = response.data.quote;
+          document.querySelector('#author').innerText = "\" " + response.data.character + " \"";
+        }
+
+      
+    </script>
+
             </div>
 
     </div> 
@@ -60,7 +106,7 @@
        <!-- End of Main Content -->
 
     <!-- Footer -->
-    <center>
+    {{-- <center>
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
@@ -68,7 +114,7 @@
             </div>
         </div>
     </footer>
-    </center>
+    </center> --}}
     <!-- End of Footer -->
 
 </div>
@@ -118,7 +164,7 @@ right: 50px;
 top:10px;
 }
 .welcome_content{
- height: 530px;
+ height: 100%;
 }
 .first_h1{
  padding-top: 170px;
@@ -127,6 +173,7 @@ top:10px;
 }
 
 .btn_login{
+    margin-top: 60px;
     color: white;
     background-color: rgba(0,0,0,0.5);
     border-radius: 10%;
@@ -173,10 +220,34 @@ inherits: true;
 initial-value: 0turn;
 }
 
-.copyright{
-color:white;
+
+
+.quotebackground{
+    color:white;
+ text-shadow: 2px 2px 2px black;
+ background-color: lightgray;
+ padding: 15px;
+ border-radius: 10px;
+ background-color: rgba(168, 167, 167, 0.5);
+ font-family: "Lucida Console", "Courier New", monospace;
+}
+.quotebackground2{
+    color:black;
+ text-shadow: 2px 2px 2px white;
+ background-color: gray;
+ padding: 5px;
 }
 
+
+.quoteoftheday{
+    color:white;
+ text-shadow: 2px 2px 2px black;
+}
+
+.inventorytitle{
+    font-size: 150px;
+    color: hsla(0, 100%, 1%, 0.4);
+}
 </style>
 
 </html>

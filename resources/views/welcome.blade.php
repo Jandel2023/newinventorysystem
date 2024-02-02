@@ -59,7 +59,9 @@
                     <input type="submit" name="submit" class="btn_login" value="Click Here to Log-In">
                     </form>
                   
-                    <h1 class="inventorytitle">INVENTORY</h1>
+                    <div class="container">
+                      <h1 class="inventorytitle display-4 text-center">INVENTORY</h1>
+                  </div>
                 </center>
         
         <script>
@@ -244,9 +246,15 @@ initial-value: 0turn;
  text-shadow: 2px 2px 2px black;
 }
 
-.inventorytitle{
-    font-size: 150px;
+.inventorytitle.display-4.text-center{
+    font-size: 1000%;
     color: hsla(0, 100%, 1%, 0.4);
+}
+
+@media screen and (max-width:650px){
+.inventorytitle.display-4.text-center{
+  font-size: 500%;
+}
 }
 </style>
 

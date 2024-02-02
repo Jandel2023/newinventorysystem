@@ -35,6 +35,7 @@
     <link href={{ asset ("js/sb-admin-2.min.css")}} rel="stylesheet">
     <link href={{ asset ("img/undraw_profile.svg")}} rel="stylesheet">
 
+
     
 </head>
 
@@ -50,7 +51,7 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
                 
                 <div class="sidebar-brand-icon">
-                    <img width="100px" height="100px" class="img-profile rounded-circle" src="{{ asset('storage/profile_images' . auth()->user()->profile_image) }}" alt="Profile Image">
+                    <img width="100px" height="100px" class="img-profile rounded-circle" src="{{ asset('storage/'. auth()->user()->profile_image) }}" alt="Profile Image">
                     <p class="rolename">
                         @if(Auth::user()->role_name)<span class="badge badge-success">{{Auth::user()->role_name}}</span>
                         @endif
@@ -165,7 +166,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{strtoupper(Auth::user()->name)}}</span>
                                 {{-- <img class="img-profile rounded-circle" src="img/undraw_profile.svg"> --}}
-                                <img class="img-profile rounded-circle" src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="Profile Image">
+                                <img class="img-profile rounded-circle" src="{{ asset('storage/'. auth()->user()->profile_image) }}" alt="Profile Image">
                                 {{-- <i class="fa-solid fa-bars"></i> --}}
                             </a>
                             <!-- Dropdown - User Information -->

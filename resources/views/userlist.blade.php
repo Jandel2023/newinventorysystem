@@ -56,7 +56,7 @@
             <td>{{ ++$i }}</td>
             <td>
                 @if ($users->profile_image)
-                <img src="{{ asset('storage/' . $users->profile_image) }}" alt="Profile Image" style="max-width: 50px; max-height: 50px;">
+                <img src="{{ asset('storage/'. $users->profile_image) }}" alt="Profile Image" style="max-width: 50px; max-height: 50px;">
                 @else
                 No Image
                 @endif

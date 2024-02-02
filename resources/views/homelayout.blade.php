@@ -50,7 +50,7 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
                 
                 <div class="sidebar-brand-icon">
-                    <img width="100px" height="100px" class="img-profile rounded-circle" src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="Profile Image">
+                    <img width="100px" height="100px" class="img-profile rounded-circle" src="{{ asset('storage/profile_images' . auth()->user()->profile_image) }}" alt="Profile Image">
                     <p class="rolename">
                         @if(Auth::user()->role_name)<span class="badge badge-success">{{Auth::user()->role_name}}</span>
                         @endif

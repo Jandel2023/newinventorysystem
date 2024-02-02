@@ -255,6 +255,12 @@ initial-value: 0turn;
 .inventorytitle.display-4.text-center{
   font-size: 500%;
 }
+
+}
+@media screen and (max-width:480px){
+.inventorytitle.display-4.text-center{
+  font-size: 290%;
+}
 }
 </style>
 

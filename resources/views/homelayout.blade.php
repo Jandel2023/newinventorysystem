@@ -354,8 +354,11 @@
 .content{
     
 }
-
-
+@media screen and (max-width:480px){
+.titlehead{
+  display: none;
+}
+}
 
 
     </style>

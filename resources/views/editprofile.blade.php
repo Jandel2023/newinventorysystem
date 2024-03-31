@@ -33,24 +33,6 @@
                             <label for="email" class="form-label">Email Address:</label>
                             <input type="email" name="email" class="form-control" id="email" value="{{Auth::user()->email}}" placeholder="email"  required>
                         </div>
-
-                       
-{{-- 
-                        @if (auth()->user()['role_name'] == 'Admin')
-                        <div class="mb-3"><br>
-                            <label for="email" class="form-label">Role Name: </label>
-
-                            <select name="role_name">
-                            <option>{{Auth::user()->role_name}}</option>
-                            <option>Supervisor</option>
-                            <option>Warehouseman</option>
-                            <option>Admin</option> --}}
-                            {{-- @foreach($role as $rol)
-                            <option value="{{$rol->id}}">{{$rol->role_name}}</option>
-                            @endforeach --}}
-{{-- 
-                       </select>
-                        </div>@endif --}}
                         <div class="mb-3">
                             <div class="d-grid">
                                 <button class="btn btn-primary">Update</button>

@@ -97,7 +97,7 @@ class AuthController extends Controller
             // Store only the relative path in the database
             $user->profile_image = str_replace('public/', '', $path);
         }
-
+        
 
                 $user->save();
                 return back()->with('success', 'User added successfully');

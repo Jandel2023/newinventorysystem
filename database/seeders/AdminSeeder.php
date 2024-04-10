@@ -15,6 +15,7 @@ class AdminSeeder extends Seeder
         $name = 'Jandel Lopez';
         $email = 'jandellopez1997@gmail.com';
         $role = 'Admin';
+        $profile_image = 'please add a profile from your files';
 
         DB::table('users')->insert ([
             [
@@ -25,6 +26,7 @@ class AdminSeeder extends Seeder
                 'remember_token' => NULL,
                 'created_at' => now(),
                 'updated_at' => now(),
+                'profile_image' => $profile_image,
             ],
         ]);
     }

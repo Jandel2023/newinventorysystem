@@ -73,7 +73,7 @@ class AuthController extends Controller
     {
        
         try { 
-            $request->validate([
+            $data = $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
                 'role_name' => 'required|string|max:255',
@@ -83,23 +83,16 @@ class AuthController extends Controller
     
          
 
-                $user = new User();
-                $user->name = $request->name;
-                $user->email = $request->email;
-                $user->role_name = $request->role_name;
-                $user->password = Hash::make($request->password);
+              
 
                // Check if a profile image is provided
         if ($request->hasFile('profile_image')) {
-            $image = $request->file('profile_image');
-            $path = $image->store('public/profile_images');
-
-            // Store only the relative path in the database
-            $user->profile_image = str_replace('public/', '', $path);
+            $profilepath = $request->file('profile_image')->store('profile_images', 'public');
+            $data['profile_image'] = $profilepath;
         }
-        
 
-                $user->save();
+        $regpost = User::create($data);
+        
                 return back()->with('success', 'User added successfully');
             }
             
@@ -169,11 +162,37 @@ class AuthController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request): RedirectResponse
+    // public function update(Request $request, User $testimonial): RedirectResponse
+    // {
+    //     try {
+    //         $data = $request->validate([
+    //             'profile_img' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+    //             'content' => 'required',
+    //             'author' => 'required',
+    //             'job_title' => 'required',
+    //         ]);
+    
+    //         if ($request->hasFile('profile_img')) {
+    //             $profilePath = $request->file('profile_img')->store('testimonialprofile', 'public');
+    //             $data['profile_img'] = $profilePath;
+    //         }
+    
+    //         $testimonial->update($data);
+    
+    //         return redirect()->route('updatetestimonial', ['testimonial' => $testimonial])
+    //                         ->with('success','Testimonial updated successfully.');
+    //     } 
+    //     catch (\Illuminate\Database\QueryException $e) {
+    //         // Handle database query exceptions if needed
+    //         return redirect()->back()->with('error', 'An error occurred during testimonial update.');
+    //     }
+    // }
+
+    public function update(Request $request, User $user): RedirectResponse
     {
         try{
         $user = Auth::user();
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255' . $user->id,
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -182,15 +201,13 @@ class AuthController extends Controller
 
     // Check if a profile image is provided
     if ($request->hasFile('profile_image')) {
-        $image = $request->file('profile_image');
-        $path = $image->store('public/profile_images');
-        $user->profile_image = str_replace('public/', '', $path);
+        $imagepath = $request->file('profile_image')->store('profile_images','public');
+        $data['profile_image'] = $imagepath;
+       
     }
 
-    $user->name = $request->input('name');
-    $user->email = $request->input('email');
     
-    $user->save();
+    $user->update($data);
 
 
     return back()->with('success', 'Profile updated successfully');
